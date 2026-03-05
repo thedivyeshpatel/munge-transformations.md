@@ -1,10 +1,11 @@
-**Data Transformations (Munge Phase)**
 **Overview:**
-This file documents the data cleaning and transformation steps applied to the raw Video_Games_Sales_as_at_22_Dec_2016.csv dataset prior to analysis. These steps were originally completed as part of the Module 4 assignment.
+This file documents the specific data cleaning and transformation steps applied to the raw video game sales dataset. These steps were executed using a single SQL query (via Hive) to perfectly mutate, filter, and arrange the data for the business problem.
 
 **Transformations Performed:**
-**Data Filtering:** The dataset was filtered to isolate records specifically related to the Sports and Shooter genres to align with the business problem.
+Table Creation & Selection: A new table named sales_genre was created from the original sales table. The query specifically isolated only the Genre, Global_Sales, and Critic_Score columns.
 
-**Handling Missing Values (Nulls):** - Records with missing Global_Sales data were removed or handled to ensure accurate sales aggregations. Records lacking a Critic_Score were identified and excluded from the average score calculations to prevent skewed results.
+**Mutate:** The Global_Sales column was mutated by rounding the sales figures to the nearest whole number using the ROUND() function.
 
-**Data Type Standardization:** Ensured that sales columns were properly formatted as numeric (float/decimal) data types rather than text to allow for mathematical aggregation in later steps.
+**Filter:** The dataset was filtered using a WHERE clause to exclusively include records where the Critic_Score was strictly greater than 0, successfully removing nulls and zero values.
+
+**Arrange:** The final dataset was arranged in descending order (DESC) based on the Critic_Score, sorting the games from the highest-rated to the lowest-rated.
